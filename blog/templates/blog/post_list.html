@@ -8,7 +8,9 @@
             </div>
             <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaks }}</p>
-            <p>IMAGE: {{ post.image }}</p>
+            {% if post.image %}
+            <p><img src="{{ MEDIA_URL }}{{ post.image }}" width="60" height="60"></p>
+            {% endif %}
             <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
         </div>
     {% endfor %}
